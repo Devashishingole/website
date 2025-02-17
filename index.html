@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body, html {
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+        }
+        .container {
+            height: 100%;
+            background-image: url('file:///D:/For%20Shree/1st%20page/ourpic.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .message {
+            font-size: 2rem;
+            color: white;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.8); /* Subtle glow effect */
+            margin-bottom: 20px;
+        }
+        .button-container {
+            display: flex;
+            gap: 20px;
+        }
+        .button {
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Subtle glow effect */
+            transition: all 0.1s ease-in-out;
+        }
+        .yes-btn {
+            background-color: green;
+            color: white;
+            box-shadow: 0 0 8px rgba(0, 255, 0, 0.6); /* Subtle glow for YES button */
+        }
+        .no-btn {
+            background-color: red;
+            color: white;
+            pointer-events: auto;
+            box-shadow: 0 0 8px rgba(255, 0, 0, 0.6); /* Subtle glow for NO button */
+        }
+        .no-btn.disabled {
+            pointer-events: none;
+        }
+        .no-btn:hover, .yes-btn:hover {
+            transform: scale(1.1);
+        }
+        .popup {
+            position: absolute;
+            top: 110px; /* Adjusted position */
+            font-size: 1.2rem;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+            animation: fadeOut 5s forwards;
+        }
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="message">Did you miss me?🙁</div>
+        <div class="button-container">
+            <button class="button yes-btn" onclick="openPage2()">YES!🥹</button>
+            <button class="button no-btn" id="noBtn" onclick="moveNoButton()">No🙃</button>
+        </div>
+        <div id="popup" class="popup"></div>
+    </div>
+
+    <script>
+        let noButton = document.getElementById("noBtn");
+        let popup = document.getElementById("popup");
+        let clickCount = 0;
+
+        function openPage2() {
+            window.location.href = "file:///D:/For%20Shree/2nd%20page/page2.html";
+        }
+
+        function moveNoButton() {
+            clickCount++;
+            if (clickCount < 3) {
+                let randomX = Math.floor(Math.random() * 140) - 70;
+                let randomY = Math.floor(Math.random() * 140) - 70;
+                noButton.style.transform = `translate(${randomX}px, ${randomY}px)`;
+
+                if (clickCount === 1) {
+                    showPopup("Please don't break the babies heart🥺");
+                } else if (clickCount === 2) {
+                    showPopup("Please say yes🥺");
+                }
+            } else {
+                let randomX = Math.floor(Math.random() * 140) - 70;
+                let randomY = Math.floor(Math.random() * 140) - 70;
+                noButton.style.transform = `translate(${randomX}px, ${randomY}px)`;
+            }
+        }
+
+        function showPopup(message) {
+            popup.innerText = message;
+            popup.style.display = "block";
+            setTimeout(() => {
+                popup.style.display = "none";
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
